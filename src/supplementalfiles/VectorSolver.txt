@@ -1,0 +1,80 @@
+
+=====================================================================
+Vector Solver
+=====================================================================
+
+3. An airplane starting at city A flies 350 km
+at 30 degrees east of north, 125 km at east of south
+and finally 500 km at 30 degrees south of west to
+city B.
+
+A second airplane flies directly from city A to B.
+
+How far and in what direction must the second plane
+fly?
+
+=====================================================================
+Summary:
+=====================================================================
+
+1.1	Leg 1 : 350 km, 30 deg east-of-north
+1.2	Leg 2 : 125 km, 30 deg east-of-south
+1.3 Leg 3 : 500 km, 30 deg south-of-west
+
+=====================================================================
+Compass Points:
+=====================================================================
+N, E	;North-to-East;1st quadrant;+,+;NULL
+N, NE	;North,East-of-North;1st quadrant;+,+;use complementary angle
+N, NW	;North,West-of-North;2nd quadrant;+,-;use complementary angle
+---------------------------------------------------------------------
+S, E	;South-to-East;4th quadrant;-,+;NULL
+S, ES	;South,East-of-South;4th quadrant;-,+;use complementary angle
+S, WS	;South,West-of-South,3rd quadrant;-,-;use complementary angle
+---------------------------------------------------------------------
+E, S 	;East-to-South;1st quadrant;+,-;NULL
+E, NE	;East,North-of-East;1st quadrant;+,+;direct angle
+E, SE	;East,South-of-East;4th quadrant;+,-;direct angle
+---------------------------------------------------------------------
+W, S	;West-to-South; 2nd quadrant;-,-;NULL
+W, NW	;West,North-of-West;2nd quadrant;-,+;direct angle
+W, SW	;West,South-of-West;3rd quadrant;-,-;direct angle
+---------------------------------------------------------------------
+
+Above problem, restated:
+
+2.1	Leg 1 : 350 km, 30 deg east-of-north	=>	<350,N|E,30,90-30>
+2.2	Leg 2 : 125 km, 30 deg east-of-south	=>	<125,N|NE,30,90-30>
+2.3 Leg 3 : 500 km, 30 deg south-of-west	=>	500 km,W|SW,30,30>
+=====================================================================
+
+ALGORITHM
+
+Enter Data
+
+For N = 0 to NumVectors
+
+	'Direct angle used
+	Case 
+		N, E
+		N, NE
+		N, NW
+		S, E
+		S, ES
+		S, WS
+		
+		ComputeXYComponents(theta)
+
+	Case
+		E, S 
+		E, NE	
+		E, SE
+		W, S
+		W, NW
+		W, SW
+
+		ComputeXYComponents(90-theta)
+		
+		AddVectors(compassPoints)
+		
+End For
